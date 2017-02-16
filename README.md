@@ -74,12 +74,35 @@ Usage
 ```javascript
 'use strict'
 
-const sgFile = require('sg-file')
+const { saveStream } = require('sg-file')
+const co = require('co')
+const fs = require('fs')
+
+co(function * () {
+  let stream = fs.createReadStream('foo.txt')
+  yield saveStream('copies/foo-copy.txt', stream)
+}).catch((err) => console.error(err))
 
 ```
 
 
 <!-- Section from "doc/guides/02.Usage.md.hbs" End -->
+
+<!-- Section from "doc/guides/03.Functions.md.hbs" Start -->
+
+<a name="section-doc-guides-03-functions-md"></a>
+
+Functions
+---------
+
+Available functions
+
+| Signature | Description |
+| ---- | ----------- |
+| `saveStream(filename, stream, options) -> Promise` | Save stream into file |
+
+
+<!-- Section from "doc/guides/03.Functions.md.hbs" End -->
 
 
 <!-- Sections Start -->
